@@ -1,12 +1,18 @@
-version: '3'
+# La directiva version se considera obsoleta
+# version: '3'
 # version: '3.8'
-# Definimos una aplicación con 2 servicios (microservicios)
+# Definimos una aplicación con 2 servicios (microservicios): Nuestra aplicación PHP y MariaDB.
 services: 
-# Servicio 1: apache/php con aplicación CRUD
+# Servicio 1: apache con aplicación APLICACION LAMP CRUD PHP. Utiliza la imagen: lumigv/lamp-crud-app:1.0
   apache:
-    image: lumigv/lamp-crud-app:1.0
+    image: lumigv/lamp-crud-app:latest
     ports: 
       - 80:80
+#    environment: 
+#      - MARIADB_HOST=mariadb
+#      - MARIADB_DATABASE=${DATABASE}
+#      - MARIADB_USER=${USER}
+#      - MARIADB_PASSWORD=${PASSWORD}  
 # Controla el orden inicio de los servicios      
     depends_on:
       - mariadb
@@ -20,15 +26,27 @@ services:
     ports:
       - 3306:3306
     environment: 
-# El acceso a las variables de entorno puede ser de dos maneras: $MARIADB_DATABASE ó ${MARIADB_DATABASE} utilizan el valor de la variable MARIADB_DATABASE definida en .env
-      - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
-      - MARIADB_DATABASE=${MARIADB_DATABASE}
-      - MARIADB_USER=${MARIADB_USER}
-      - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+# El acceso a las variables de entorno puede ser de dos maneras: $DATABASE ó ${DATABASE} utilizan el valor de la variable DATABASE definida en el archivo .env
+      - MARIADB_ROOT_PASSWORD=${ROOT_PASSWORD}
+      - MARIADB_DATABASE=${DATABASE}
+      - MARIADB_USER=${USER}
+      - MARIADB_PASSWORD=${PASSWORD}
       - LANG=C.UTF-8
     volumes:
       - mariadb_data:/var/lib/mysql
       - ./sql:/docker-entrypoint-initdb.d 
     restart: always
+# Servicio 3: phpmyadmin
+  phpmyadmin:
+    image: phpmyadmin
+# Publica el puerto 80 del contenedor como 8080 en la red del host de docker    
+    ports:
+      - 8080:80
+    environment:
+      - PMA_HOST=mariadb
+    depends_on: 
+      - mariadb
+volumes:
+  mariadb_data:
 
   

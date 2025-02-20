@@ -1,16 +1,15 @@
-CREATE TABLE users (
+CREATE TABLE empleados (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-  surname VARCHAR(100) NOT NULL,
-  name VARCHAR(100) NOT NULL,
-  age INT UNSIGNED NOT NULL
+  apellido VARCHAR(100) NOT NULL,
+  nombre VARCHAR(100) NOT NULL,
+  edad INT UNSIGNED NOT NULL,
+  puesto VARCHAR(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
-INSERT INTO users (surname, name, age) VALUES('Coloma', 'Javier', 25);
-INSERT INTO users (surname, name, age) VALUES('Oviedo', 'Carmen', 34);
-INSERT INTO users (surname, name, age) VALUES('Vargas', 'Pascual', 19);
-INSERT INTO users (surname, name, age) VALUES('Donoso', 'Maria', 45);
-INSERT INTO users (surname, name, age) VALUES('Celis', 'Manuel', 56);
-INSERT INTO users (surname, name, age) VALUES('Palencia', 'Jana', 31);
-INSERT INTO users (surname, name, age) VALUES('Zamanillo', 'Pedro', 63);
-
-
+INSERT INTO empleados (apellido, nombre, edad, puesto) VALUES('Coloma', 'Javier', 25, 'Contable');
+INSERT INTO empleados (apellido, nombre, edad, puesto) VALUES('Oviedo', 'Carmen', 34, 'Administrativo');
+INSERT INTO empleados (apellido, nombre, edad, puesto) VALUES('Vargas', 'Pascual', 19, 'Dependiente');
+INSERT INTO empleados (apellido, nombre, edad, puesto) VALUES('Donoso', 'Maria', 45, 'Gerente');
+INSERT INTO empleados (apellido, nombre, edad, puesto) VALUES('Celis', 'Manuel', 56, 'Dependiente');
+INSERT INTO empleados (apellido, nombre, edad, puesto) VALUES('Palencia', 'Jana', 31, 'Dependiente');
+INSERT INTO empleados (apellido, nombre, edad, puesto) VALUES('Zamanillo', 'Pedro', 63, 'Repartidor');
