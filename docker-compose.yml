@@ -11,7 +11,7 @@ services:
 #    environment: 
 #      - MARIADB_HOST=mariadb
 #      - MARIADB_DATABASE=${DATABASE}
-#      - MARIADB_USER=${USER}
+#      - MARIADB_USER=${LOGIN}
 #      - MARIADB_PASSWORD=${PASSWORD}  
 # Controla el orden inicio de los servicios      
     depends_on:
@@ -29,7 +29,7 @@ services:
 # El acceso a las variables de entorno puede ser de dos maneras: $DATABASE ó ${DATABASE} utilizan el valor de la variable DATABASE definida en el archivo .env
       - MARIADB_ROOT_PASSWORD=${ROOT_PASSWORD}
       - MARIADB_DATABASE=${DATABASE}
-      - MARIADB_USER=${USER}
+      - MARIADB_USER=${LOGIN}
       - MARIADB_PASSWORD=${PASSWORD}
       - LANG=C.UTF-8
     volumes:
